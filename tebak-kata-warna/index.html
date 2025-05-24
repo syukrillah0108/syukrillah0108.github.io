@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Tebak Kata/Warna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Tebak Kata/Warna</h1>
+        <div class="input-section card">
+            <label for="kataInput">Kata (pisahkan dengan koma):</label>
+            <input type="text" id="kataInput" placeholder="misal: apel,jeruk,melon">
+            <label>Warna:</label>
+            <div id="warnaInputs" class="warna-inputs">
+                <input type="color" value="#ff0000">
+                <input type="color" value="#00ff00">
+                <input type="color" value="#0000ff">
+            </div>
+            <button type="button" id="addColorBtn">+ Tambah Warna</button>
+            <button id="startBtn" class="start-btn">Start</button>
+        </div>
+        <div class="game-section" id="gameSection" style="display:none;">
+            <div class="kata" id="kataDisplay"></div>
+            <button id="nextBtn">Next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
