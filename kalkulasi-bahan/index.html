@@ -1,14 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kalkulasi Bahan</title>
-    <script type="module" crossorigin src="/assets/index-BHN1097Y.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-8pGmUnt0.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Eco-Enzyme</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #d4fc79, #96e6a1);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  #eco-enzyme-calculator {
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+
+  input:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 4px rgba(39,174,96,0.4);
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #219150;
+  }
+
+  #result {
+    margin-top: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+  }
+
+  #result p {
+    font-size: 15px;
+    color: #2c3e50;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #result b {
+    color: #27ae60;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div id="eco-enzyme-calculator">
+  <h3>🧪 Kalkulator Eco-Enzyme</h3>
+  
+  <label for="bahanBaku">Masukkan berat bahan baku (gram):</label>
+  <input id="bahanBaku" type="number" placeholder="Contoh: 100">
+  
+  <button id="calculate">Hitung</button>
+  
+  <div id="result">
+    <p>💧 Air: <b>-</b></p>
+    <p>🍂 Bahan Baku: <b>-</b></p>
+    <p>🍯 Gula Merah: <b>-</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>-</b></p>
+  </div>
+  
+  <footer>Rasio 10 : 3 : 1 (Air : Bahan Baku : Gula Merah)</footer>
+</div>
+
+<script>
+document.getElementById('calculate').addEventListener('click', function() {
+  const bahanBaku = parseFloat(document.getElementById('bahanBaku').value);
+  if (isNaN(bahanBaku) || bahanBaku <= 0) {
+    alert('Masukkan berat bahan baku yang valid!');
+    return;
+  }
+
+  const air = (10/3) * bahanBaku;
+  const gulaMerah = (1/3) * bahanBaku;
+  const total = air + bahanBaku + gulaMerah;
+
+  document.getElementById('result').innerHTML = `
+    <p>💧 Air: <b>${air.toFixed(2)} g</b></p>
+    <p>🍂 Bahan Baku: <b>${bahanBaku.toFixed(2)} g</b></p>
+    <p>🍯 Gula Merah: <b>${gulaMerah.toFixed(2)} g</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>${total.toFixed(2)} g</b></p>
+  `;
+});
+</script>
+
+</body>
 </html>
