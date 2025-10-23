@@ -24,10 +24,22 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   }
 
+  .title-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .title-logo img {
+    width: 70px;
+  }
+
   h3 {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 20px;
+    margin: 0;
   }
 
   label {
@@ -101,13 +113,16 @@
 <body>
 
 <div id="eco-enzyme-calculator">
-  <h3>🧪 Kalkulator Eco-Enzyme | RICP - UTB</h3>
-  
+  <div class="title-logo">
+    <img src="./img/utb_kotak.png" alt="Logo RICP">
+    <h3>🧪 Kalkulator Eco-Enzyme | RICP - UTB</h3>
+  </div>
+
   <label for="bahanBaku">Masukkan berat bahan baku (gram):</label>
   <input id="bahanBaku" type="number" placeholder="Contoh: 100">
-  
+
   <button id="calculate">Hitung</button>
-  
+
   <div id="result">
     <p>💧 Air: <b>-</b></p>
     <p>🍂 Bahan Baku: <b>-</b></p>
@@ -115,7 +130,7 @@
     <hr>
     <p><b>🔹 Total Campuran:</b> <b>-</b></p>
   </div>
-  
+
   <footer>Rasio 10 : 3 : 1 (Air : Bahan Baku : Gula Merah)</footer>
 </div>
 

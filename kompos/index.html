@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Kompos Organik</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #b2fefa, #0ed2f7);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .calculator {
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  .title img {
+    width: 70px;
+  }
+
+  h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+
+  input:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 4px rgba(39,174,96,0.4);
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #219150;
+  }
+
+  #result1, #result2 {
+    margin-top: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+  }
+
+  #result1 p, #result2 p {
+    font-size: 15px;
+    color: #2c3e50;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #result1 b, #result2 b {
+    color: #27ae60;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #555;
+  }
+
+  hr {
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+</style>
+</head>
+<body>
+
+<!-- Kalkulator Berdasarkan Bahan Hijau -->
+<div class="calculator">
+  <div class="title">
+    <img src="./img/utb_kotak.png" alt="Logo RICP">
+    <h3>🌿 Kalkulator Kompos Berdasarkan Bahan Hijau | RICP - UTB</h3>
+  </div>
+  
+  <label for="bahanHijau">Masukkan berat bahan hijau (gram):</label>
+  <input id="bahanHijau" type="number" placeholder="Contoh: 350">
+  
+  <button id="calculate1">Hitung Kompos</button>
+  
+  <div id="result1">
+    <p>🌿 Bahan Hijau: <b>-</b></p>
+    <p>🍂 Bahan Coklat: <b>-</b></p>
+    <p>🌱 Tanah/Kompos Matang: <b>-</b></p>
+    <p>🧫 Aktivator: <b>-</b></p>
+    <p>💧 Air: <b>-</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>-</b></p>
+  </div>
+  
+  <footer>Rasio 35% Hijau, 50% Coklat, 10% Tanah, 2% Aktivator, 3% Air</footer>
+</div>
+
+<!-- Kalkulator Berdasarkan Bahan Coklat -->
+<div class="calculator">
+  <div class="title">
+    <img src="./img/utb_kotak.png" alt="Logo RICP">
+    <h3>🍂 Kalkulator Kompos Berdasarkan Bahan Coklat | RICP - UTB</h3>
+  </div>
+  
+  <label for="bahanCoklat">Masukkan berat bahan coklat (gram):</label>
+  <input id="bahanCoklat" type="number" placeholder="Contoh: 500">
+  
+  <button id="calculate2">Hitung Kompos</button>
+  
+  <div id="result2">
+    <p>🍂 Bahan Coklat: <b>-</b></p>
+    <p>🌿 Bahan Hijau: <b>-</b></p>
+    <p>🌱 Tanah/Kompos Matang: <b>-</b></p>
+    <p>🧫 Aktivator: <b>-</b></p>
+    <p>💧 Air: <b>-</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>-</b></p>
+  </div>
+  
+  <footer>Rasio 50% Coklat, 35% Hijau, 10% Tanah, 2% Aktivator, 3% Air</footer>
+</div>
+
+<script>
+// Kalkulator Berdasarkan Bahan Hijau
+document.getElementById('calculate1').addEventListener('click', function() {
+  const bahanHijau = parseFloat(document.getElementById('bahanHijau').value);
+  if (isNaN(bahanHijau) || bahanHijau <= 0) {
+    alert('Masukkan berat bahan hijau yang valid!');
+    return;
+  }
+
+  const total = bahanHijau / 0.35;
+  const bahanCoklat = total * 0.50;
+  const tanah = total * 0.10;
+  const aktivator = total * 0.02;
+  const air = total * 0.03;
+
+  document.getElementById('result1').innerHTML = `
+    <p>🌿 Bahan Hijau: <b>${bahanHijau.toFixed(2)} g</b></p>
+    <p>🍂 Bahan Coklat: <b>${bahanCoklat.toFixed(2)} g</b></p>
+    <p>🌱 Tanah/Kompos Matang: <b>${tanah.toFixed(2)} g</b></p>
+    <p>🧫 Aktivator: <b>${aktivator.toFixed(2)} g</b></p>
+    <p>💧 Air: <b>${air.toFixed(2)} g</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>${total.toFixed(2)} g</b></p>
+  `;
+});
+
+// Kalkulator Berdasarkan Bahan Coklat
+document.getElementById('calculate2').addEventListener('click', function() {
+  const bahanCoklat = parseFloat(document.getElementById('bahanCoklat').value);
+  if (isNaN(bahanCoklat) || bahanCoklat <= 0) {
+    alert('Masukkan berat bahan coklat yang valid!');
+    return;
+  }
+
+  const total = bahanCoklat / 0.50;
+  const bahanHijau = total * 0.35;
+  const tanah = total * 0.10;
+  const aktivator = total * 0.02;
+  const air = total * 0.03;
+
+  document.getElementById('result2').innerHTML = `
+    <p>🍂 Bahan Coklat: <b>${bahanCoklat.toFixed(2)} g</b></p>
+    <p>🌿 Bahan Hijau: <b>${bahanHijau.toFixed(2)} g</b></p>
+    <p>🌱 Tanah/Kompos Matang: <b>${tanah.toFixed(2)} g</b></p>
+    <p>🧫 Aktivator: <b>${aktivator.toFixed(2)} g</b></p>
+    <p>💧 Air: <b>${air.toFixed(2)} g</b></p>
+    <hr>
+    <p><b>🔹 Total Campuran:</b> <b>${total.toFixed(2)} g</b></p>
+  `;
+});
+</script>
+
+</body>
+</html>
