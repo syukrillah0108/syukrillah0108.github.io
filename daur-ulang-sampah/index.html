@@ -234,11 +234,11 @@
     const total = air + bahanBaku + gulaMerah;
 
     document.getElementById('resultEE').innerHTML = `
-      <p>💧 Air: <b>${air.toFixed(2)} g</b></p>
-      <p>🍂 Bahan Baku: <b>${bahanBaku.toFixed(2)} g</b></p>
-      <p>🍯 Gula Merah: <b>${gulaMerah.toFixed(2)} g</b></p>
+      <p>💧 Air: <b>${air.toFixed(0)} g</b></p>
+      <p>🍂 Bahan Baku: <b>${bahanBaku.toFixed(0)} g</b></p>
+      <p>🍯 Gula Merah: <b>${gulaMerah.toFixed(0)} g</b></p>
       <hr>
-      <p><b>🔹 Total Campuran:</b> <b>${total.toFixed(2)} g</b></p>
+      <p><b>🔹 Total Campuran:</b> <b>${total.toFixed(0)} g</b></p>
     `;
   });
 
@@ -255,11 +255,11 @@
     const total = air + em4 + gula;
 
     document.getElementById('resultKompos').innerHTML = `
-      <p>🧫 EM4: <b>${em4.toFixed(2)} g</b></p>
-      <p>🍯 Gula Merah: <b>${gula.toFixed(2)} g</b></p>
-      <p>💧 Air: <b>${air.toFixed(2)} g</b></p>
+      <p>🧫 EM4: <b>${em4.toFixed(0)} g</b></p>
+      <p>🍯 Gula Merah: <b>${gula.toFixed(0)} g</b></p>
+      <p>💧 Air: <b>${air.toFixed(0)} g</b></p>
       <hr>
-      <p><b>🔹 Total Larutan Aktivator:</b> <b>${total.toFixed(2)} g</b></p>
+      <p><b>🔹 Total Larutan Aktivator:</b> <b>${total.toFixed(0)} g</b></p>
     `;
   });
 </script>
