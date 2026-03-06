@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin THR</title>
+    <style>
+        /* RESET & FULLSCREEN SETUP */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* JUDUL SPIN THR */
+        h1 {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.4);
+            z-index: 5;
+        }
+
+        /* WHEEL CONTAINER */
+        .wheel-container {
+            position: relative;
+            width: 90vmin;
+            max-width: 500px;
+            height: 90vmin;
+            max-height: 500px;
+            margin-bottom: 30px;
+        }
+
+        /* JARUM PENUNJUK */
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 50px;
+            background-color: #e94560;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 10;
+            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+        }
+
+        /* CANVAS RODA */
+        canvas {
+            width: 100%;
+            height: 100%;
+            /* PERBAIKAN: Ubah durasi animasi menjadi 10 detik */
+            transition: transform 10s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            transform: rotate(0deg);
+        }
+
+        /* TOMBOL SPIN */
+        button {
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #0f3460;
+            border: 3px solid #e94560;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 5;
+        }
+
+        button:hover {
+            background-color: #e94560;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            background-color: #555;
+            border-color: #444;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* POPUP (MODAL) STYLES */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .popup {
+            background-color: #0f3460;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #e94560;
+            text-align: center;
+            animation: popIn 0.3s ease-out;
+            max-width: 90%;
+        }
+
+        .popup h2 { margin-bottom: 20px; color: #ffd700; }
+        
+        .popup img {
+            max-width: 300px;
+            max-height: 150px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto; margin-right: auto;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Spin THR</h1>
+
+    <div class="wheel-container">
+        <div class="pointer"></div>
+        <canvas id="wheelCanvas" width="800" height="800"></canvas>
+    </div>
+    
+    <button id="spinBtn">Putar!</button>
+
+    <div id="popupOverlay" class="overlay">
+        <div class="popup">
+            <img id="popupImg" src="" alt="Hadiah Uang">
+            <button id="closeBtn">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("wheelCanvas");
+        const ctx = canvas.getContext("2d");
+        const spinBtn = document.getElementById("spinBtn");
+        
+        const popupOverlay = document.getElementById("popupOverlay");
+        const popupImg = document.getElementById("popupImg");
+        const closeBtn = document.getElementById("closeBtn");
+
+        // Urutan Index: 0(1k), 1(2k), 2(5k), 3(10k), 4(20k), 5(50k), 6(100k)
+        const imageFiles = ["1k.jpg", "2k.jpg", "5k.jpg", "10k.jpg", "20k.jpg", "50k.jpg", "100k.jpg"];
+        const loadedImages = [];
+
+        for (let i = 0; i < imageFiles.length; i++) {
+            const img = new Image();
+            img.src = imageFiles[i];
+            img.onload = () => { drawWheel(); };
+            loadedImages.push(img);
+        }
+
+        let currentRotation = 0;
+        let isSpinning = false;
+
+        function drawWheel() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = canvas.width / 2;
+            const arcSize = (2 * Math.PI) / imageFiles.length;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+            for (let i = 0; i < imageFiles.length; i++) {
+                const angle = (-Math.PI / 2) + (i * arcSize) - (arcSize / 2);
+
+                if (loadedImages[i].complete && loadedImages[i].naturalWidth !== 0) {
+                    ctx.save();
+                    
+                    const imageAngle = angle + arcSize / 2; 
+                    
+                    ctx.translate(
+                        centerX + Math.cos(imageAngle) * (radius * 0.65),
+                        centerY + Math.sin(imageAngle) * (radius * 0.65)
+                    );
+                    
+                    ctx.rotate(imageAngle + Math.PI / 2); 
+                    
+                    const imgWidth = 235; 
+                    const imgHeight = 105;
+                    
+                    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
+
+                    ctx.drawImage(loadedImages[i], -imgWidth / 2, -imgHeight / 2, imgWidth, imgHeight);
+                    ctx.restore();
+                }
+            }
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+            spinBtn.disabled = true;
+
+            // ==========================================
+            // PENGATURAN SISTEM BANDAR (RIGGED LOGIC)
+            // ==========================================
+            const allowedIndices = [0, 1, 2, 3]; // Hanya 1k, 2k, 5k, 10k
+            
+            const targetIndex = allowedIndices[Math.floor(Math.random() * allowedIndices.length)];
+            
+            const segmentAngle = 360 / imageFiles.length;
+            const baseAngle = 360 - (targetIndex * segmentAngle);
+            
+            const jitter = (Math.random() * (segmentAngle * 0.8)) - (segmentAngle * 0.4);
+            let finalStopAngle = baseAngle + jitter;
+
+            if (finalStopAngle < 0) finalStopAngle += 360;
+            if (finalStopAngle >= 360) finalStopAngle -= 360;
+
+            const currentMod = currentRotation % 360;
+            let rotationNeeded = finalStopAngle - currentMod;
+            if (rotationNeeded < 0) rotationNeeded += 360;
+
+            // PERBAIKAN: Putar 15 kali penuh agar durasi 10 detik terlihat seru dan ngebut
+            const totalRotation = currentRotation + (360 * 15) + rotationNeeded; 
+            // ==========================================
+
+            canvas.style.transform = `rotate(${totalRotation}deg)`;
+            currentRotation = totalRotation;
+
+            // PERBAIKAN: Tunggu 10 detik (10000 ms) sesuai durasi animasi CSS
+            setTimeout(() => {
+                isSpinning = false;
+                spinBtn.disabled = false;
+                
+                const normalizedRotation = totalRotation % 360;
+                const winningIndex = Math.round((360 - normalizedRotation) / segmentAngle) % imageFiles.length;
+                
+                popupImg.src = imageFiles[winningIndex];
+                popupOverlay.style.display = "flex";
+                
+            }, 10000); 
+        }
+
+        closeBtn.addEventListener("click", () => {
+            popupOverlay.style.display = "none";
+        });
+
+        drawWheel();
+        spinBtn.addEventListener("click", spinWheel);
+    </script>
+</body>
+</html>
