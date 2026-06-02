@@ -1,7 +1,7 @@
 // ============================================
 // DAFTAR EMOJI & DATA KONTEN (Teks Update dari User)
 // ============================================
-const emojiList = ["😂", "💨", "💩", "🤢", "😷", "🤡", "✨", "🎬", "🎞️"];
+const emojiList = ["😂", "💨", "✨", "🎬", "🎞️","😂", "💨", "✨", "🎬", "🎞️"];
 
 const bdayData = {
     "config": { "senderName": "Masyuk", "audioId": "bgMusic" },
