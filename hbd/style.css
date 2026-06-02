@@ -1,0 +1,114 @@
+:root {
+    --gold: #c5a059; --royal-red: #4a0000; --dark-brown: #2b1d0e;
+    --paper: #fdf5e6; --ink: #2b1d0e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html { 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    font-family: 'Playfair Display', serif; 
+    background-color: transparent; /* INI KUNCINYA: Harus transparan agar gambar di belakangnya terlihat */
+    color: var(--ink); 
+}
+
+/* --- BACKGROUND BERJALAN & GLITCH --- */
+.animated-bg { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: -1; /* Cukup -1 saja, tidak perlu sampai -101 */
+    pointer-events: none; 
+    background-image: url('gambar.png'); /* Sudah benar begini */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: repeat-x; 
+    animation: loopFilmBackground 40s linear infinite; 
+}
+@keyframes loopFilmBackground { 0% { background-position: 0 0; } 100% { background-position: -2000px 0; } }
+
+.vintage-overlay { position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.85) 100%), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E"); animation: globalFlicker 0.15s infinite; }
+.scratches { position: absolute; inset: 0; }
+.scratches::before { content: ''; position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(20, 10, 0, 0.7); animation: panLine 10s linear infinite, analogGlitch 3s infinite; }
+@keyframes panLine { 0% { left: -10%; } 100% { left: 110%; } }
+@keyframes analogGlitch { 0%, 90%, 100% { transform: scaleX(1); opacity: 0.5; clip-path: none; } 92% { transform: scaleX(4) translateX(5px); opacity: 1; background: #000; clip-path: inset(10% 0 40% 0); } 95% { transform: scaleX(2) translateX(-5px); background: #3c1e0a; } }
+@keyframes globalFlicker { 0% { opacity: 0.9; } 100% { opacity: 1; } }
+
+/* --- EMOJI --- */
+#emoji-container { position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
+.emoji-bubble { position: absolute; bottom: -50px; filter: sepia(0.5) brightness(0.8); }
+.float-up { animation: floatUp 4s forwards ease-in; }
+.pop-up { animation: popUp 3s forwards ease-out; }
+@keyframes floatUp { 0% { transform: translateY(0) rotate(0); opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+@keyframes popUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 70% { transform: translateY(-50vh) scale(1.2); opacity: 1; } 75% { transform: translateY(-52vh) scale(3); opacity: 0; } }
+
+/* --- TOP BAR (Cari & Bagikan) --- */
+.top-bar { position: fixed; top: 0; left: 0; width: 100%; padding: 20px; display: flex; justify-content: center; align-items: center; z-index: 10005; }
+.search-container { position: absolute; left: 50%; transform: translateX(-50%); width: 50%; max-width: 400px; }
+.search-input-fake { width: 100%; padding: 10px 15px; background: rgba(20, 10, 0, 0.8); border: 1px solid var(--gold); color: var(--gold); font-family: 'Cinzel', serif; font-size: 1rem; border-radius: 30px; cursor: pointer; text-align: center; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.6); }
+.search-input-fake:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+.share-container { position: absolute; right: 20px; }
+.share-btn-top { background: rgba(0,0,0,0.8); border: 1px solid var(--gold); color: var(--gold); padding: 10px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
+.share-btn-top:hover { background: var(--gold); transform: scale(1.1); }
+
+/* --- WELCOME SCREEN --- */
+.welcome-container { position: fixed; inset: 0; z-index: 11000; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(0,0,0,0.9); transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1); }
+.welcome-content { text-align: center; color: var(--gold); padding: 20px; }
+.welcome-photo { width: 180px; height: 180px; border: 4px solid var(--gold); border-radius: 50%; object-fit: cover; filter: sepia(1); margin-bottom: 20px; }
+.welcome-title { font-family: 'Cinzel', serif; font-size: 2.5rem; }
+.welcome-desc { color: #eaeaea; font-style: italic; margin: 15px 0; font-size: 1.1rem; line-height: 1.5; max-width: 500px; }
+.btn-open { margin-top: 30px; padding: 12px 30px; background: var(--gold); color: #000; font-family: 'Cinzel', serif; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; border-radius: 3px; }
+.btn-open:hover { transform: scale(1.1); background: #fff; }
+
+/* --- MAIN SLIDESHOW --- */
+.main-container {
+    height: 100vh; width: 100vw; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; 
+    background: rgba(0,0,0,0.4); /* Angka 0.4 ini adalah ketebalan warna hitamnya. Ubah jadi 0.1 atau 0.2 kalau mau gambarnya lebih terang */
+}
+.hidden { display: none !important; }
+.slideshow-wrapper { width: 90%; max-width: 500px; display: flex; justify-content: center; align-items: center; perspective: 1200px; }
+.slide-card { background: var(--paper); padding: 20px; border: 10px double var(--gold); display: none; flex-direction: column; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.9); width: 100%; }
+.active-slide { display: flex; transform-origin: left center; animation: pageFlip 0.8s cubic-bezier(0.17, 0.88, 0.32, 1.28) forwards; }
+@keyframes pageFlip { 0% { opacity: 0; transform: rotateY(90deg) scale(0.9); } 100% { opacity: 1; transform: rotateY(0deg) scale(1); } }
+.film-photo-wrapper { width: 100%; background: #000; padding: 5px; margin-bottom: 15px; border: 2px solid var(--dark-brown); }
+.slide-img { width: 100%; height: 230px; object-fit: cover; display: block; filter: sepia(0.8) contrast(1.3); }
+.slide-title { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-red); margin-bottom: 10px; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
+.slide-text { font-size: 1rem; line-height: 1.6; color: var(--ink); text-align: center; }
+
+/* --- MEDIA PLAYER BAWAH --- */
+.media-player { position: fixed; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.98), rgba(20,10,0,0.9)); border-top: 2px solid var(--gold); padding: 15px 30px; z-index: 10000; display: flex; flex-direction: column; gap: 12px; }
+.progress-container { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; cursor: pointer; position: relative; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--gold); transition: width 0.1s linear; }
+.player-controls { display: flex; justify-content: space-between; align-items: center; }
+.time-display { font-family: monospace; color: var(--gold); font-size: 1.2rem; width: 80px; }
+.btn-group { display: flex; gap: 20px; align-items: center; }
+.control-btn { background: transparent; color: var(--gold); border: none; font-size: 1.5rem; cursor: pointer; transition: 0.2s; text-shadow: 0 0 5px rgba(0,0,0,0.8); }
+.control-btn:hover { transform: scale(1.2); color: #fff; }
+.play-btn { font-size: 1.8rem; background: var(--gold); color: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #fff; box-shadow: 0 0 15px rgba(197, 160, 89, 0.5); }
+
+/* --- MODAL DAFTAR ARSIP (NEW) --- */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 12000; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); transition: opacity 0.3s; }
+.modal-content { background: var(--paper); border: 8px double var(--gold); width: 90%; max-width: 450px; padding: 25px; border-radius: 5px; position: relative; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 20px 50px #000; }
+.modal-title { font-family: 'Cinzel', serif; color: var(--royal-red); text-align: center; margin-bottom: 20px; font-size: 1.5rem; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+.modal-close { position: absolute; top: 15px; right: 20px; background: transparent; border: none; font-size: 1.5rem; color: var(--royal-red); cursor: pointer; transition: 0.2s; }
+.modal-close:hover { transform: scale(1.2); color: #000; }
+.archive-list { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 5px; }
+.archive-item { display: flex; justify-content: space-between; padding: 12px 15px; border: 1px solid var(--gold); background: rgba(197, 160, 89, 0.1); color: var(--ink); cursor: pointer; transition: 0.3s; font-weight: bold; border-radius: 3px; }
+.archive-item:hover { background: var(--gold); color: #000; transform: scale(1.02); }
+.archive-time { font-family: monospace; color: var(--royal-red); }
+
+/* --- SCROLLBAR UNTUK MODAL --- */
+.archive-list::-webkit-scrollbar { width: 6px; }
+.archive-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* RESPONSIF */
+@media (max-width: 480px) {
+    .search-container { width: 60%; }
+    .slide-card { padding: 15px; border-width: 6px; }
+    .slide-img { height: 180px; }
+    .media-player { padding: 10px 15px; }
+    .play-btn { width: 40px; height: 40px; font-size: 1.4rem; }
+}

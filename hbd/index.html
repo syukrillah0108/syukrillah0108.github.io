@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Analysis: Puisi Hitut</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="animated-bg"></div>
+
+    <div class="vintage-overlay"><div class="scratches"></div></div>
+    <div id="emoji-container"></div>
+
+    <audio id="bgMusic">
+        <source src="musik1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="top-bar hidden" id="topBar">
+        <div class="search-container" onclick="openArchiveModal()">
+            <div class="search-input-fake">🔍 Cari Arsip</div>
+        </div>
+        <div class="share-container" onclick="shareKocak()">
+            <button class="share-btn-top" title="Bagikan">🔗</button>
+        </div>
+    </div>
+
+    <div id="welcomeScreen" class="welcome-container">
+        <div class="welcome-content">
+            <img src="intro.jpg" class="welcome-photo" alt="Profile">
+            <h1 class="welcome-title">Selamat Ulang Tahun!</h1>
+            <p class="welcome-desc">⚠️Tingkatkan volume 100% - Dokumen Rahasia, Dokumen ini membongkar rahasia karakter sesorang di balik HITUTNYA.</p>
+            <button class="btn-open" onclick="startAutoCinema()">BUKA ARSIP 🎬</button>
+        </div>
+    </div>
+
+    <div id="app" class="main-container hidden">
+        <div id="slideshow" class="slideshow-wrapper"></div>
+
+        <div class="media-player">
+            <div class="progress-container" id="progressContainer" onclick="seekAudio(event)">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="player-controls">
+                <div class="time-display" id="currentTimeDisplay">00:00</div>
+                
+                <div class="btn-group">
+                    <button class="control-btn" onclick="prevSegment()" title="Kembali">⏮</button>
+                    <button class="control-btn play-btn" id="playPauseBtn" onclick="togglePlay()">⏸</button>
+                    <button class="control-btn" onclick="nextSegment()" title="Lanjut">⏭</button>
+                </div>
+                
+                <div class="time-display" style="text-align: right; visibility: hidden;">00:00</div> </div>
+        </div>
+    </div>
+
+    <div id="archiveModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeArchiveModal()">✖</button>
+            <h2 class="modal-title">Daftar Arsip Hitut</h2>
+            <div class="archive-list" id="archiveList">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
