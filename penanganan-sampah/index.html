@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kehadiran - Program Penanganan Sampah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                 <!-- <img src="https://via.placeholder.com/80x80.png?text=Logo+UTB" alt="Logo UTB" class="logo"> -->
+                <img src="./DRPM.jpg" alt="Logo DRPM" class="logo">
+            </div>
+            <h1>PROGRAM PENANGANAN SAMPAH</h1>
+            <h3>Kecamatan Buahbatu</h3>
+            <p>DRPM Universitas Teknologi Bandung</p>
+        </div>
+
+        <!-- Box Selector -->
+        <div class="form-group">
+            <label class="section-label">Pilih Jurusan Mahasiswa:</label>
+            <div class="jurusan-grid">
+                <input type="radio" name="jurusan" id="ti" value="ti">
+                <label for="ti" class="jurusan-box">Teknik Informatika</label>
+
+                <input type="radio" name="jurusan" id="industri" value="industri">
+                <label for="industri" class="jurusan-box">Teknik Industri</label>
+
+                <input type="radio" name="jurusan" id="dkv" value="dkv">
+                <label for="dkv" class="jurusan-box">Desain Komunikasi Visual</label>
+
+                <input type="radio" name="jurusan" id="bisnis" value="bisnis">
+                <label for="bisnis" class="jurusan-box">Bisnis Digital</label>
+
+                <input type="radio" name="jurusan" id="ritel" value="ritel">
+                <label for="ritel" class="jurusan-box">Manajemen Ritel</label>
+            </div>
+        </div>
+
+        <!-- Input NIM -->
+        <div class="form-group">
+            <label class="section-label" for="nim">Nomor Induk Mahasiswa (NIM):</label>
+            <input type="text" id="nim" placeholder="Contoh: 22262011298" autocomplete="off" onkeypress="handleEnter(event)">
+        </div>
+
+        <button onclick="cariData()">Cek Kehadiran</button>
+
+        <div id="loading">Memuat data dari server...</div>
+        <div id="error-message"></div>
+
+        <!-- Area Hasil -->
+        <div id="result-section">
+            <div class="student-info">
+                <h2 id="res-nama">Nama Mahasiswa</h2>
+                <p>NIM: <span id="res-nim">-</span> | Jurusan: <span id="res-jurusan">-</span></p>
+            </div>
+            
+            <h3 style="font-size: 15px; margin-bottom: 5px; color: var(--text-main);">Rekap Kehadiran:</h3>
+            
+            <!-- Container Utama (Sekat dan Grid akan dimasukkan ke sini oleh JS) -->
+            <div id="attendance-container"></div>
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
