@@ -129,7 +129,9 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
             const statusDiv = document.createElement('div');
             statusDiv.className = 'status-badge';
             
+            // Pengecekan status huruf kecil (lowercase)
             const statusLower = item.status.toLowerCase();
+            
             if (statusLower === 'hadir') {
                 card.classList.add('status-hadir');
                 statusDiv.innerText = "Hadir";
@@ -139,6 +141,12 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
             } else if (statusLower === 'izin') {
                 card.classList.add('status-izin');
                 statusDiv.innerText = "Izin";
+            
+            // Mengecek teks "kordinasi online" dari spreadsheet
+            } else if (statusLower === 'kordinasi online') {
+                card.classList.add('status-kordinasi');
+                statusDiv.innerText = "Kordinasi Online"; // Menampilkan teks "Kordinasi" di dalam kotak agar rapi
+            
             } else {
                 card.classList.add('status-kosong');
                 statusDiv.innerText = "-"; 

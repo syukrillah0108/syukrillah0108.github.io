@@ -6,10 +6,21 @@
     --text-main: #1f2937;
     --text-muted: #6b7280;
     
-    --hadir-bg: #d1fae5; --hadir-text: #065f46;
-    --sakit-bg: #fef3c7; --sakit-text: #92400e;
-    --izin-bg:  #dbeafe; --izin-text:  #1e40af;
-    --kosong-bg: #f3f4f6; --kosong-text: #9ca3af;
+    /* Warna Status Kehadiran (Sama persis dengan Google Sheets) */
+    --hadir-bg: #b7e1cd; 
+    --hadir-text: #0d5302;
+    
+    --sakit-bg: #a4c2f4; 
+    --sakit-text: #113f8c;
+    
+    --izin-bg: #b4a7d6; 
+    --izin-text: #351c75;
+    
+    --kordinasi-bg: #fce5cd; 
+    --kordinasi-text: #b45f06;
+    
+    --kosong-bg: #f3f4f6; 
+    --kosong-text: #9ca3af;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
@@ -74,12 +85,21 @@ button:hover { background-color: var(--primary-hover); }
 .date-title { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 .status-badge { padding: 5px; border-radius: 6px; font-size: 13px; font-weight: 600; }
 
-/* Warna Status */
-.status-hadir { background-color: var(--hadir-bg); border-color: #a7f3d0; } .status-hadir .status-badge { color: var(--hadir-text); }
-.status-sakit { background-color: var(--sakit-bg); border-color: #fde68a; } .status-sakit .status-badge { color: var(--sakit-text); }
-.status-izin { background-color: var(--izin-bg); border-color: #bfdbfe; } .status-izin .status-badge { color: var(--izin-text); }
-.status-kosong { background-color: var(--kosong-bg); } .status-kosong .status-badge { color: var(--kosong-text); }
+/* Warna Status & Border */
+.status-hadir { background-color: var(--hadir-bg); border-color: #93c47d; } 
+.status-hadir .status-badge { color: var(--hadir-text); }
 
+.status-sakit { background-color: var(--sakit-bg); border-color: #8ab4f8; } 
+.status-sakit .status-badge { color: var(--sakit-text); }
+
+.status-izin { background-color: var(--izin-bg); border-color: #9c84c6; } 
+.status-izin .status-badge { color: var(--izin-text); }
+
+.status-kordinasi { background-color: var(--kordinasi-bg); border-color: #f8cb9c; } 
+.status-kordinasi .status-badge { color: var(--kordinasi-text); }
+
+.status-kosong { background-color: var(--kosong-bg); border-color: #e5e7eb; } 
+.status-kosong .status-badge { color: var(--kosong-text); }
 /* HP Tampilan */
 @media (max-width: 480px) {
     .attendance-grid { grid-template-columns: repeat(2, 1fr); }
