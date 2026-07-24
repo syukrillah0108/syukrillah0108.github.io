@@ -11,10 +11,8 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="logo-container">
-                 <!-- <img src="https://via.placeholder.com/80x80.png?text=Logo+UTB" alt="Logo UTB" class="logo"> -->
                 <img src="./DRPM.jpg" alt="Logo DRPM" class="logo">
             </div>
             <h1>PROGRAM PENANGANAN SAMPAH</h1>
@@ -22,7 +20,6 @@
             <p>DRPM Universitas Teknologi Bandung</p>
         </div>
 
-        <!-- Box Selector -->
         <div class="form-group">
             <label class="section-label">Pilih Jurusan Mahasiswa:</label>
             <div class="jurusan-grid">
@@ -43,7 +40,6 @@
             </div>
         </div>
 
-        <!-- Input NIM -->
         <div class="form-group">
             <label class="section-label" for="nim">Nomor Induk Mahasiswa (NIM):</label>
             <input type="text" id="nim" placeholder="Contoh: 22262011298" autocomplete="off" onkeypress="handleEnter(event)">
@@ -54,7 +50,6 @@
         <div id="loading">Memuat data....</div>
         <div id="error-message"></div>
 
-        <!-- Area Hasil -->
         <div id="result-section">
             <div class="student-info">
                 <h2 id="res-nama">Nama Mahasiswa</h2>
@@ -63,7 +58,6 @@
             
             <h3 style="font-size: 15px; margin-bottom: 5px; color: var(--text-main);">Rekap Kehadiran:</h3>
             
-            <!-- Container Utama (Sekat dan Grid akan dimasukkan ke sini oleh JS) -->
             <div id="attendance-container"></div>
             
         </div>

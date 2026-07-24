@@ -1,4 +1,3 @@
-// KONFIGURASI JURUSAN & GOOGLE SHEETS
 const configJurusan = {
     "ti": {
         nama: "Teknik Informatika",
@@ -80,13 +79,12 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
     document.getElementById('res-jurusan').innerText = namaJurusanLengkap;
 
     const container = document.getElementById('attendance-container');
-    container.innerHTML = ''; // Kosongkan wadah utama
+    container.innerHTML = ''; 
 
     const keys = Object.keys(studentData);
     const dataPerBulan = {};
     const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-    // Kelompokkan data berdasarkan Bulan dan Tahun
     keys.forEach(key => {
         if (key !== 'No' && key !== 'NIM' && key !== 'NAMA MAHASISWA') {
             const bagianTanggal = key.split('/');
@@ -105,16 +103,13 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
         }
     });
 
-    // Buat elemen Sekat (Divider) dan Grid menyatu ke bawah
     for (const [bulan, daftarKehadiran] of Object.entries(dataPerBulan)) {
-        
-        // 1. Buat Sekat Garis Bulan
+
         const divider = document.createElement('div');
         divider.className = 'month-divider';
-        divider.innerText = bulan; // Contoh: "Juli 2026"
+        divider.innerText = bulan;
         container.appendChild(divider);
 
-        // 2. Buat Grid Kartu Kehadiran di bawah sekat tersebut
         const gridDiv = document.createElement('div');
         gridDiv.className = 'attendance-grid';
 
@@ -124,12 +119,11 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
 
             const dateDiv = document.createElement('div');
             dateDiv.className = 'date-title';
-            dateDiv.innerText = item.tanggal; // Tanggal Full DD/MM/YYYY
+            dateDiv.innerText = item.tanggal;
 
             const statusDiv = document.createElement('div');
             statusDiv.className = 'status-badge';
-            
-            // Pengecekan status huruf kecil (lowercase)
+
             const statusLower = item.status.toLowerCase();
             
             if (statusLower === 'hadir') {
@@ -142,10 +136,9 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
                 card.classList.add('status-izin');
                 statusDiv.innerText = "Izin";
             
-            // Mengecek teks "kordinasi online" dari spreadsheet
             } else if (statusLower === 'kordinasi online') {
                 card.classList.add('status-kordinasi');
-                statusDiv.innerText = "Kordinasi Online"; // Menampilkan teks "Kordinasi" di dalam kotak agar rapi
+                statusDiv.innerText = "Kordinasi Online";
             
             } else {
                 card.classList.add('status-kosong');
