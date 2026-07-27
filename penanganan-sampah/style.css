@@ -91,7 +91,50 @@ button:hover { background-color: var(--primary-hover); }
 .status-kosong { background-color: var(--kosong-bg); border-color: #e5e7eb; } 
 .status-kosong .status-badge { color: var(--kosong-text); }
 
+#summary-section {
+    margin-top: 40px;
+    border-top: 2px dashed #e5e7eb;
+    padding-top: 25px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+}
+
+.summary-card {
+    padding: 15px 10px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: transform 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+}
+
+.summary-value {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.summary-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.status-hadir .summary-value { color: var(--hadir-text); }
+.status-sakit .summary-value { color: var(--sakit-text); }
+.status-izin .summary-value { color: var(--izin-text); }
+.status-kordinasi .summary-value { color: var(--kordinasi-text); }
+.status-kosong .summary-value { color: var(--text-muted); }
+
 @media (max-width: 480px) {
     .attendance-grid { grid-template-columns: repeat(2, 1fr); }
     .jurusan-grid { grid-template-columns: repeat(2, 1fr); }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
 }

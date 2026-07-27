@@ -85,8 +85,10 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
     const dataPerBulan = {};
     const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
+    const kolomAbaikan = ['No', 'NIM', 'NAMA MAHASISWA', 'Hadir', 'Kordinasi', 'Izin', 'Sakit', 'Belum ditandai'];
+
     keys.forEach(key => {
-        if (key !== 'No' && key !== 'NIM' && key !== 'NAMA MAHASISWA') {
+        if (!kolomAbaikan.includes(key)) {
             const bagianTanggal = key.split('/');
             if (bagianTanggal.length === 3) {
                 const bulanIndex = parseInt(bagianTanggal[1], 10) - 1;
@@ -135,11 +137,9 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
             } else if (statusLower === 'izin') {
                 card.classList.add('status-izin');
                 statusDiv.innerText = "Izin";
-            
-            } else if (statusLower === 'kordinasi online') {
+            } else if (statusLower === 'kordinasi online' || statusLower === 'kordinasi') {
                 card.classList.add('status-kordinasi');
                 statusDiv.innerText = "Kordinasi Online";
-            
             } else {
                 card.classList.add('status-kosong');
                 statusDiv.innerText = "-"; 
@@ -152,6 +152,28 @@ function tampilkanHasil(studentData, namaJurusanLengkap) {
 
         container.appendChild(gridDiv);
     }
+
+    const summaryContainer = document.getElementById('summary-container');
+    summaryContainer.innerHTML = ''; 
+    
+    const dataRingkasan = [
+        { judul: "Hadir", nilai: studentData['Hadir'] || "0", classWarna: "status-hadir" },
+        { judul: "Kordinasi", nilai: studentData['Kordinasi'] || "0", classWarna: "status-kordinasi" },
+        { judul: "Izin", nilai: studentData['Izin'] || "0", classWarna: "status-izin" },
+        { judul: "Sakit", nilai: studentData['Sakit'] || "0", classWarna: "status-sakit" },
+        { judul: "Kosong", nilai: studentData['Belum ditandai'] || "0", classWarna: "status-kosong" }
+    ];
+
+    dataRingkasan.forEach(item => {
+        const box = document.createElement('div');
+        box.className = `summary-card ${item.classWarna}`;
+        
+        box.innerHTML = `
+            <div class="summary-value">${item.nilai}</div>
+            <div class="summary-label">${item.judul}</div>
+        `;
+        summaryContainer.appendChild(box);
+    });
 
     const resultSection = document.getElementById('result-section');
     resultSection.style.display = 'block';
