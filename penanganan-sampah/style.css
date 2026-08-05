@@ -24,7 +24,21 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
 body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
-.container { background-color: var(--card-bg); width: 100%; max-width: 800px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); padding: 40px 30px; height: fit-content; }
+.container { 
+    background-color: var(--card-bg); 
+    width: 95%; /* Diubah agar lebih fleksibel */
+    max-width: 1200px; /* Diperlebar dari 800px ke 1200px untuk layar laptop */
+    border-radius: 16px; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); 
+    padding: 40px 30px; 
+    height: fit-content; 
+    margin: 0 auto; 
+}
+
+/* Opsional: Tambahkan ini di bagian paling bawah agar rapi di HP */
+@media (max-width: 768px) {
+    .container { width: 100%; padding: 20px 15px; }
+}
 
 .header { text-align: center; margin-bottom: 35px; border-bottom: 2px dashed #e5e7eb; padding-bottom: 25px; }
 .logo-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
@@ -33,16 +47,21 @@ body { background-color: var(--bg-color); color: var(--text-main); padding: 20px
 .header h3 { font-size: 16px; color: var(--text-main); margin-top: 5px; }
 .header p { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
 
+/* Komponen Toggle Mode Pencarian */
+.toggle-container { display: flex; background: #f3f4f6; border-radius: 10px; padding: 6px; margin-bottom: 25px; }
+.toggle-btn { flex: 1; text-align: center; padding: 12px; font-weight: 600; font-size: 14px; color: var(--text-muted); cursor: pointer; border-radius: 8px; transition: all 0.3s ease; }
+.toggle-btn.active { background: var(--primary); color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
 .form-group { margin-bottom: 25px; }
 .section-label { display: block; margin-bottom: 12px; font-weight: 600; font-size: 14px; }
-input[type="text"] { width: 100%; padding: 14px 15px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 15px; outline: none; transition: all 0.3s ease; }
-input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); }
 
-.jurusan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-.jurusan-grid input[type="radio"] { display: none; }
-.jurusan-box { display: flex; align-items: center; justify-content: center; text-align: center; background-color: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; padding: 12px 10px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.2s ease; }
-.jurusan-box:hover { border-color: #d1d5db; background-color: #f3f4f6; }
-.jurusan-grid input[type="radio"]:checked + .jurusan-box { background-color: var(--hadir-bg); border-color: var(--primary); color: var(--primary-hover); font-weight: 600; }
+/* Style Input & Dropdown */
+input[type="text"], .dropdown-select { 
+    width: 100%; padding: 14px 15px; border: 2px solid #e5e7eb; border-radius: 10px; 
+    font-size: 15px; outline: none; transition: all 0.3s ease; background-color: white; 
+    cursor: pointer;
+}
+input[type="text"]:focus, .dropdown-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); }
 
 button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); }
 button:hover { background-color: var(--primary-hover); }
@@ -51,26 +70,15 @@ button:hover { background-color: var(--primary-hover); }
 #loading { color: var(--primary-hover); background-color: var(--hadir-bg); }
 #error-message { color: #b91c1c; background-color: #fee2e2; }
 
-#result-section { display: none; margin-top: 35px; border-top: 2px dashed #e5e7eb; padding-top: 25px; }
+#result-section, #result-rw-section { display: none; margin-top: 35px; border-top: 2px dashed #e5e7eb; padding-top: 25px; }
 .student-info { background-color: #f8fafc; padding: 18px 20px; border-radius: 12px; margin-bottom: 10px; border-left: 5px solid var(--primary); }
 .student-info h2 { font-size: 18px; margin-bottom: 5px; color: var(--text-main); }
 .student-info p { color: var(--text-muted); font-size: 13px; }
 
-.month-divider {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--primary-hover);
-    margin: 25px 0 15px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e5e7eb;
-}
+/* Grid Card Kehadiran per NIM */
+.month-divider { font-size: 16px; font-weight: 600; color: var(--primary-hover); margin: 25px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb; }
 .month-divider:first-child { margin-top: 10px; }
-
-.attendance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
-    gap: 12px;
-}
+.attendance-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); gap: 12px; }
 .date-card { padding: 12px 8px; border-radius: 10px; text-align: center; display: flex; flex-direction: column; gap: 6px; border: 1px solid #e5e7eb; transition: transform 0.2s; }
 .date-card:hover { transform: translateY(-3px); }
 .date-title { font-size: 12px; color: var(--text-muted); font-weight: 600; }
@@ -78,54 +86,21 @@ button:hover { background-color: var(--primary-hover); }
 
 .status-hadir { background-color: var(--hadir-bg); border-color: #93c47d; } 
 .status-hadir .status-badge { color: var(--hadir-text); }
-
 .status-sakit { background-color: var(--sakit-bg); border-color: #8ab4f8; } 
 .status-sakit .status-badge { color: var(--sakit-text); }
-
 .status-izin { background-color: var(--izin-bg); border-color: #9c84c6; } 
 .status-izin .status-badge { color: var(--izin-text); }
-
 .status-kordinasi { background-color: var(--kordinasi-bg); border-color: #f8cb9c; } 
 .status-kordinasi .status-badge { color: var(--kordinasi-text); }
-
 .status-kosong { background-color: var(--kosong-bg); border-color: #e5e7eb; } 
 .status-kosong .status-badge { color: var(--kosong-text); }
 
-#summary-section {
-    margin-top: 40px;
-    border-top: 2px dashed #e5e7eb;
-    padding-top: 25px;
-}
-
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
-}
-
-.summary-card {
-    padding: 15px 10px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid transparent;
-    transition: transform 0.2s;
-}
-
-.summary-card:hover {
-    transform: translateY(-3px);
-}
-
-.summary-value {
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.summary-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-main);
-}
+#summary-section { margin-top: 40px; border-top: 2px dashed #e5e7eb; padding-top: 25px; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; }
+.summary-card { padding: 15px 10px; border-radius: 12px; text-align: center; border: 1px solid transparent; transition: transform 0.2s; }
+.summary-card:hover { transform: translateY(-3px); }
+.summary-value { font-size: 26px; font-weight: 700; margin-bottom: 5px; }
+.summary-label { font-size: 13px; font-weight: 600; color: var(--text-main); }
 
 .status-hadir .summary-value { color: var(--hadir-text); }
 .status-sakit .summary-value { color: var(--sakit-text); }
@@ -133,8 +108,29 @@ button:hover { background-color: var(--primary-hover); }
 .status-kordinasi .summary-value { color: var(--kordinasi-text); }
 .status-kosong .summary-value { color: var(--text-muted); }
 
+/* --- STYLE UNTUK TABEL MODE RW (Menyesuaikan Screenshot Dosen) --- */
+.table-wrapper { overflow-x: auto; margin-top: 20px; border-radius: 8px; border: 1px solid #d1d5db; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.attendance-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.attendance-table th, .attendance-table td { padding: 10px 15px; text-align: center; border: 1px solid #d1d5db; }
+
+/* Warna Header disamakan seperti Google Sheets (Hijau Gelap) */
+.attendance-table th { background-color: #276749; color: white; font-weight: 600; position: sticky; top: 0; z-index: 10; white-space: nowrap; }
+.attendance-table td { white-space: nowrap; }
+
+/* Efek zebra cross di baris agar mudah dibaca */
+.attendance-table tbody tr:nth-child(even) { background-color: #f9fafb; }
+.attendance-table tbody tr:hover { background-color: #f3f4f6; }
+
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+
+/* Background cell full warna menyesuaikan status */
+.bg-hadir { background-color: #b7e1cd; color: #000; font-weight: 500; }
+.bg-sakit { background-color: #a4c2f4; color: #000; font-weight: 500; }
+.bg-izin { background-color: #b4a7d6; color: #000; font-weight: 500; }
+.bg-kordinasi { background-color: #fce5cd; color: #000; font-weight: 500; }
+
 @media (max-width: 480px) {
     .attendance-grid { grid-template-columns: repeat(2, 1fr); }
-    .jurusan-grid { grid-template-columns: repeat(2, 1fr); }
     .summary-grid { grid-template-columns: repeat(2, 1fr); }
 }

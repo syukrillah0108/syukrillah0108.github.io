@@ -20,36 +20,51 @@
             <p>DRPM Universitas Teknologi Bandung</p>
         </div>
 
-        <div class="form-group">
-            <label class="section-label">Pilih Jurusan Mahasiswa:</label>
-            <div class="jurusan-grid">
-                <input type="radio" name="jurusan" id="ti" value="ti">
-                <label for="ti" class="jurusan-box">Teknik Informatika</label>
+        <!-- Pemilihan Mode Pencarian -->
+        <div class="toggle-container">
+            <div class="toggle-btn active" id="btn-mode-nim" onclick="switchMode('nim')">Pencarian per NIM</div>
+            <div class="toggle-btn" id="btn-mode-rw" onclick="switchMode('rw')">Pencarian per RW</div>
+        </div>
 
-                <input type="radio" name="jurusan" id="industri" value="industri">
-                <label for="industri" class="jurusan-box">Teknik Industri</label>
-
-                <input type="radio" name="jurusan" id="dkv" value="dkv">
-                <label for="dkv" class="jurusan-box">Desain Komunikasi Visual</label>
-
-                <input type="radio" name="jurusan" id="bisnis" value="bisnis">
-                <label for="bisnis" class="jurusan-box">Bisnis Digital</label>
-
-                <input type="radio" name="jurusan" id="ritel" value="ritel">
-                <label for="ritel" class="jurusan-box">Manajemen Ritel</label>
+        <!-- Form Pencarian Mode NIM -->
+        <div id="form-nim">
+            <div class="form-group">
+                <label class="section-label" for="jurusan">Pilih Jurusan Mahasiswa:</label>
+                <select id="jurusan" class="dropdown-select">
+                    <option value="" disabled selected>-- Silakan Pilih Jurusan --</option>
+                    <option value="ti">Teknik Informatika</option>
+                    <option value="industri">Teknik Industri</option>
+                    <option value="dkv">Desain Komunikasi Visual</option>
+                    <option value="bisnis">Bisnis Digital</option>
+                    <option value="ritel">Manajemen Ritel</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label class="section-label" for="nim">Nomor Induk Mahasiswa (NIM):</label>
+                <input type="text" id="nim" placeholder="Contoh: 22262011298" autocomplete="off" onkeypress="handleEnter(event)">
+            </div>
+
+            <button onclick="cariDataNIM()">Cek Kehadiran</button>
         </div>
 
-        <div class="form-group">
-            <label class="section-label" for="nim">Nomor Induk Mahasiswa (NIM):</label>
-            <input type="text" id="nim" placeholder="Contoh: 22262011298" autocomplete="off" onkeypress="handleEnter(event)">
+        <!-- Form Pencarian Mode RW -->
+        <div id="form-rw" style="display: none;">
+            <div class="form-group">
+                <label class="section-label" for="rw-select">Pilih RW:</label>
+                <select id="rw-select" class="dropdown-select">
+                    <option value="" disabled selected>-- Silakan Pilih RW --</option>
+                    <!-- Opsi RW akan di-generate via JavaScript -->
+                </select>
+            </div>
+            
+            <button onclick="cariDataRW()">Cek Kehadiran RW</button>
         </div>
-
-        <button onclick="cariData()">Cek Kehadiran</button>
 
         <div id="loading">Memuat data....</div>
         <div id="error-message"></div>
 
+        <!-- Hasil Pencarian per NIM (Card Style) -->
         <div id="result-section">
             <div class="student-info">
                 <h2 id="res-nama">Nama Mahasiswa</h2>
@@ -64,8 +79,16 @@
                 <div id="summary-container" class="summary-grid">
                 </div>
             </div>
-
         </div>
+
+        <!-- Hasil Pencarian per RW (Table Style) -->
+        <div id="result-rw-section" style="display: none;">
+            <div class="student-info">
+                <h2 id="rw-title">Data Kehadiran RW</h2>
+            </div>
+            <div id="rw-table-container"></div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
