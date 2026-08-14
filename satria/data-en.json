@@ -1,0 +1,72 @@
+{
+  "ui": {
+    "skillsTitle": "Skills",
+    "projectsTitle": "Work Experience",
+    "experienceTitle": "Experience & Organizations",
+    "docsTitle": "Documentation",
+    "footerText": "Built with HTML, CSS, JS & JSON."
+  },
+  "profile": {
+    "name": "M Satria Nugraha",
+    "title": "November 1, 1987",
+    "about": "Creative professional with skills in Microsoft Office, CorelDRAW, Canva, and CapCut, as well as experience in Social Media Administration, Content Creation, and Videography. Possesses the ability to process data and documents, create visual designs, develop creative content, and manage social media effectively. Accustomed to working creatively, meticulously, adaptively, and capable of producing engaging content according to company and audience needs.",
+    "image": "images/profil.png",
+    "email": "satria.merchs@gmail.com",
+    "wa": "https://wa.me/628156211187",
+    "ig": "https://instagram.com/satria.antihero",
+    "capcut": "https://www.capcut.com/",
+    "alamat": "https://maps.app.goo.gl/mKQZdykdfjC69T9t5"
+  },
+  "skills": [
+    "Microsoft Office (Word, Excel, PowerPoint)",
+    "Editing (CorelDRAW, Canva, CapCut)",
+    "Social Media Administration",
+    "Content Creation",
+    "Videographer"
+  ],
+  "projects": [
+    {
+      "id": "rutilahu",
+      "title": "Livable House Documentation",
+      "image": "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-2.webp",
+      "tech": [
+        "CorelDRAW",
+        "Canva"
+      ],
+      "description": "Documentation of Livable House Renovation Progress",
+      "detail": "This activity aims to document the renovation process of livable houses, starting from the planning, implementation, to the evaluation stage. This documentation includes photos of the renovation progress, technical notes, and activity reports systematically compiled.",
+      "documentation": [
+        "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-2.webp",
+        "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-3.webp"
+      ]
+    },
+    {
+      "id": "jumsih",
+      "title": "Clean Friday Documentation",
+      "image": "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-4.webp",
+      "tech": [
+        "CorelDRAW",
+        "Canva"
+      ],
+      "description": "Documentation of Clean Friday activities in Cipadung",
+      "detail": "The Clean Friday activity in Cipadung is a community initiative to maintain a clean environment. This documentation includes photos of activities, activity notes, and reports on the results of activities systematically compiled.",
+      "documentation": [
+        "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-4.webp",
+        "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-5.webp",
+        "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-6.webp"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "xyz Project Team Member",
+      "organization": "abcdefg",
+      "description": "Involved in a 3-month community service project to educate on digital fraud prevention."
+    },
+    {
+      "role": "xyz Internal Team",
+      "organization": "abcdefg",
+      "description": "Contributed to the preparation of internal documents and the development of student creative ecosystem initiatives."
+    }
+  ]
+}

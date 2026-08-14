@@ -1,0 +1,59 @@
+{
+  "ui": {
+    "skillsTitle": "Keahlian",
+    "projectsTitle": "Pengalaman Kerja",
+    "experienceTitle": "Pengalaman & Organisasi",
+    "docsTitle": "Dokumentasi",
+    "footerText": "Dibangun dengan HTML, CSS, JS & JSON."
+  },
+  "profile": {
+    "name": "M Satria Nugraha",
+    "title": "1 November 1987",
+    "about": "Profesional kreatif dengan kemampuan di bidang Microsoft Office, CorelDRAW, Canva, dan CapCut, serta berpengalaman dalam Social Media Administration, Content Creation, dan Videography. Memiliki kemampuan dalam mengolah data dan dokumen, membuat desain visual, mengembangkan konten kreatif, serta mengelola media sosial secara efektif. Terbiasa bekerja secara kreatif, teliti, adaptif, dan mampu menghasilkan konten yang menarik sesuai kebutuhan perusahaan maupun audiens.",
+    "image": "images/profil.png",
+    "email": "satria.merchs@gmail.com",
+    "wa": "https://wa.me/628156211187",
+    "ig": "https://instagram.com/satria.antihero",
+    "capcut": "https://www.capcut.com/",
+    "alamat": "https://maps.app.goo.gl/mKQZdykdfjC69T9t5"
+  },
+  "skills": [
+    "Microsoft Office (Word, Excel, PowerPoint)",
+    "Editing (CrelDRAW, Canva, CapCut)",
+    "Social Media Administration",
+    "Content Creation",
+    "Videographer"
+  ],
+  "projects": [
+    {
+      "id": "rutilahu",
+      "title": "Dokumentasi Rutilahu",
+      "image": "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-2.webp",
+      "tech": ["CrelDRAW", "Canva"],
+      "description": "Dokumentasi Perkebangan Renovasi Rumah Tinggal Layak Hini",
+      "detail": "Kegiatan ini bertujuan untuk mendokumentasikan proses renovasi rumah tinggal layak huni, mulai dari tahap perencanaan, pelaksanaan, hingga evaluasi. Dokumentasi ini mencakup foto-foto progres renovasi, catatan teknis, dan laporan kegiatan yang disusun secara sistematis.",
+      "documentation": ["images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-2.webp", "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-3.webp"]
+    },
+    {
+      "id": "jumsih",
+      "title": "Dokumentasi Jum'at Bersih",
+      "image": "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-4.webp",
+      "tech": ["CrelDRAW", "Canva"],
+      "description": "Dokumentasi kegiatan Jum'at Bersih di Cipadung",
+      "detail": "Kegiatan Jum'at Bersih di Cipadung merupakan inisiatif komunitas untuk menjaga kebersihan lingkungan. Dokumentasi ini mencakup foto-foto kegiatan, catatan kegiatan, dan laporan hasil kegiatan yang disusun secara sistematis.",
+      "documentation": ["images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-4.webp", "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-5.webp", "images/Kenapa Cipadung Kami selalu mengisi kegiatan mingguan kami dengan produktif-6.webp"]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Anggota Tim Proyek xyz",
+      "organization": "abcdefg",
+      "description": "Terlibat dalam proyek pengabdian masyarakat selama 3 bulan untuk mengedukasi pencegahan penipuan digital."
+    },
+    {
+      "role": "Tim Internal xyz",
+      "organization": "abcdefg",
+      "description": "Berkontribusi dalam penyusunan dokumen internal dan pengembangan inisiatif ekosistem kreatif mahasiswa."
+    }
+  ]
+}

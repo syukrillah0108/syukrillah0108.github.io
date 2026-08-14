@@ -1,0 +1,336 @@
+/* === Variabel Warna Tema Minimalis & Modern === */
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-color: #64ffda;
+    --card-bg: #1e1e1e;
+}
+
+/* === Pengaturan Dasar === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Penting untuk toggle bahasa absolut */
+}
+
+/* Lebar Kontainer Fleksibel */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* === Tombol Pilihan Bahasa (Kanan Atas) === */
+.lang-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 5%;
+    background: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 100;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.lang-btn:hover {
+    color: #fff;
+}
+
+.lang-btn.active {
+    color: var(--accent-color);
+}
+
+/* === Header & Foto Profil === */
+header {
+    border-bottom: 1px solid #333;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 4rem; /* Memberi ruang untuk tombol bahasa */
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-text {
+    flex: 1;
+    min-width: 300px; /* Agar teks tidak terlalu terjepit di layar kecil */
+}
+
+h1 {
+    color: var(--accent-color);
+    margin-bottom: 0.2rem;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-weight: 400;
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* === Bagian Konten === */
+section {
+    margin-bottom: 4rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+/* Daftar Keahlian (Tags) */
+.tags-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tags-list li {
+    background: var(--card-bg);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid #333;
+}
+
+/* === Grid Proyek & Kartu === */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #222;
+}
+
+.card h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.card-tech {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* === Pengalaman & Organisasi === */
+.exp-item {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--accent-color);
+    position: relative;
+}
+
+/* Titik hiasan di garis pengalaman */
+.exp-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+}
+
+.exp-item h4 {
+    margin: 0 0 0.2rem 0;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.exp-item .org {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.exp-item p {
+    margin: 0;
+    color: #aaa;
+}
+
+/* === Modal / Pop-up Detail Proyek === */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 999; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.85); 
+    overflow: auto;
+    backdrop-filter: blur(5px); /* Efek blur pada background jika browser mendukung */
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto; 
+    padding: 2.5rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    width: 90%; 
+    max-width: 800px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+#modal-title {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+#modal-detail {
+    font-size: 1.05rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.docs-grid img {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #333;
+    object-fit: cover;
+}
+
+/* === Footer === */
+footer {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4rem;
+}
+
+/* === Responsivitas Tambahan Layar HP === */
+@media (max-width: 600px) {
+    .header-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .tags-list {
+        justify-content: center;
+    }
+
+    h3 {
+        text-align: center;
+        display: block;
+    }
+    
+    .lang-toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        margin: 10% auto;
+    }
+}
