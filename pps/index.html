@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penanganan Sampah - UTB</title>
+
+    <!-- Library Select2 untuk Filter Pencarian -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Chart.js untuk Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- SheetJS untuk membaca file Excel dari Google Spreadsheet -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <!-- Tombol Hamburger untuk Mobile -->
+            <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
+            <span class="icon-logo">📊</span>
+            <h1>Penanganan Sampah</h1>
+        </div>
+        <div class="top-actions">
+            <button class="btn-outline" onclick="segarkanData()">🔄 Segarkan</button>
+            <button class="btn-outline" onclick="resetFilter()">↺ Reset</button>
+            <button class="btn-outline" onclick="document.getElementById('inputExcel').click()" title="Pakai file Excel jika spreadsheet tidak bisa diambil otomatis">📂 Buka Excel</button>
+            <button class="btn-download" onclick="downloadCSV()">⬇ Unduh data</button>
+            <input type="file" id="inputExcel" accept=".xlsx,.xls" style="display:none" onchange="bukaFileExcel(this)">
+        </div>
+    </header>
+
+    <!-- Overlay gelap untuk menutupi layar saat menu sidebar terbuka di HP -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <ul id="menuList">
+                <li class="active" onclick="gantiMenu('kehadiran', this)">Kehadiran</li>
+                <li onclick="gantiMenu('kegiatan', this)">Kegiatan</li>
+                <li onclick="gantiMenu('kendala', this)">Kendala</li>
+                <li onclick="gantiMenu('dashboard', this)">Dashboard</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="dashboard-header">
+                <h2 id="judulTabel">Monitoring Kehadiran Penanganan Sampah</h2>
+                <p id="statusData" class="status-data">Memuat data dari spreadsheet...</p>
+            </div>
+
+            <div class="filter-container">
+                <div class="filter-box">
+                    <select id="filterNim" class="select2-filter"><option value="">NIM</option></select>
+                </div>
+                <div class="filter-box">
+                    <select id="filterNama" class="select2-filter"><option value="">NAMA MAHASISWA</option></select>
+                </div>
+                <div class="filter-box">
+                    <select id="filterDept" class="select2-filter"><option value="">DEPARTEMEN</option></select>
+                </div>
+                <div class="filter-box">
+                    <select id="filterKelurahan" class="select2-filter"><option value="">KELURAHAN</option></select>
+                </div>
+                <div class="filter-box">
+                    <select id="filterRw" class="select2-filter"><option value="">RW</option></select>
+                </div>
+                <div class="filter-box">
+                    <select id="filterRegulerKip" class="select2-filter"><option value="">REGULER/KIP</option></select>
+                </div>
+            </div>
+
+            <!-- Wrapper agar layout pas di layar -->
+            <div class="table-wrapper" id="tabelContainer">
+                <div class="table-responsive">
+                    <table id="dataTable">
+                        <thead id="tableHead"></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+                <!-- Tempat Tombol Halaman (Pagination) -->
+                <div class="pagination" id="paginationContainer"></div>
+            </div>
+
+            <!-- Container Grafik Dashboard -->
+            <div id="dashboardContainer" style="display: none; height: 100%; overflow-y: auto; width: 100%;">
+                <!-- Grafik akan diisi otomatis oleh JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script src="olah-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { background-color: #f0f2f5; color: #333; overflow: hidden; /* Mencegah scroll full body */ }
+
+/* Header & Sidebar */
+.topbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 20px; border-bottom: 1px solid #e4e6eb; box-shadow: 0 2px 4px rgba(0,0,0,0.02); z-index: 100; position: relative; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo h1 { font-size: 1.2rem; font-weight: 600; color: #1c1e21; }
+.top-actions button { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.9rem; margin-left: 10px; transition: 0.2s; }
+.btn-outline { background: #fff; border: 1px solid #dadce0; color: #3c4043; font-weight: 500; }
+.btn-outline:hover { background: #f8f9fa; }
+.btn-download { background: #0b57d0; color: #fff; font-weight: 600; }
+.btn-download:hover { background: #0842a0; }
+
+.main-container { display: flex; height: calc(100vh - 65px); }
+
+.sidebar { width: 220px; background: #fff; border-right: 1px solid #e4e6eb; padding-top: 20px; }
+.sidebar ul { list-style: none; }
+.sidebar li { padding: 12px 24px; cursor: pointer; color: #444746; font-weight: 500; transition: 0.2s; margin-bottom: 5px; }
+.sidebar li:hover { background: #f1f3f4; }
+.sidebar li.active { background: #e8f0fe; color: #0b57d0; font-weight: 600; border-radius: 0 24px 24px 0; margin-right: 15px; }
+
+/* Content Area */
+.content { flex-grow: 1; display: flex; flex-direction: column; padding: 20px; overflow: hidden; }
+.dashboard-header h2 { margin-bottom: 15px; font-size: 1.4rem; color: #1f1f1f; }
+
+/* Filter - Menyesuaikan desain Select2 */
+.filter-container { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.filter-box { width: 200px; }
+.select2-container .select2-selection--single { height: 38px; border: 1px solid #dadce0; border-radius: 6px; padding: 4px; }
+.select2-container--default .select2-selection--single .select2-selection__arrow { top: 6px; }
+
+/* Area Tabel (Fit to screen) */
+.table-wrapper { display: flex; flex-direction: column; flex-grow: 1; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+.table-responsive { flex-grow: 1; overflow: auto; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; white-space: nowrap; }
+th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e4e6eb; border-right: 1px solid #e4e6eb; font-size: 0.85rem; }
+th { background: #f8f9fa; font-weight: 600; color: #444746; position: sticky; top: 0; z-index: 10; border-top: 1px solid #e4e6eb; }
+
+/* === LOGIKA FREEZE 3 KOLOM PERTAMA === */
+/* Lebar Pasti */
+th:nth-child(1), td:nth-child(1) { min-width: 50px; max-width: 50px; }
+th:nth-child(2), td:nth-child(2) { min-width: 140px; max-width: 140px; }
+th:nth-child(3), td:nth-child(3) { min-width: 250px; max-width: 250px; }
+
+/* Kunci Posisi Kiri */
+th:nth-child(1), td:nth-child(1) { position: sticky; left: 0; background: #fff; z-index: 11; }
+th:nth-child(2), td:nth-child(2) { position: sticky; left: 50px; background: #fff; z-index: 11; }
+th:nth-child(3), td:nth-child(3) { position: sticky; left: 190px; background: #fff; z-index: 11; box-shadow: 3px 0 5px rgba(0,0,0,0.04); } /* Bayangan pemisah */
+
+/* Warna Header untuk Freeze */
+th:nth-child(1), th:nth-child(2), th:nth-child(3) { background: #f8f9fa; z-index: 20; }
+
+/* Teks Panjang (Wrap) khusus untuk kolom Kegiatan & Kendala */
+.wrap-text { white-space: normal !important; min-width: 250px; vertical-align: top; line-height: 1.4; }
+
+/* Pagination */
+.pagination { display: flex; justify-content: flex-end; align-items: center; padding: 10px 20px; background: #fff; border-top: 1px solid #e4e6eb; gap: 5px; }
+.page-btn { padding: 6px 12px; border: 1px solid #dadce0; background: #fff; border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: #3c4043; transition: 0.2s; }
+.page-btn:hover { background: #f1f3f4; }
+.page-btn.active { background: #0b57d0; color: #fff; border-color: #0b57d0; font-weight: bold; }
+/* === KONDISIONAL WARNA KEHADIRAN === */
+.status-hadir { background-color: #d1e7dd !important; color: #0f5132; font-weight: 500; }
+.status-kordinasi { background-color: #fff3cd !important; color: #664d03; font-weight: 500; }
+.status-izin { background-color: #e0cffc !important; color: #3a1078; font-weight: 500; }
+.status-sakit { background-color: #cff4fc !important; color: #055160; font-weight: 500; }
+
+/* === ZEBRA STRIPING (Belang-belang) === */
+/* Baris Ganjil: Putih */
+tbody tr:nth-child(odd) td {
+    background-color: #ffffff;
+}
+/* Baris Genap: Agak gelap (abu-abu sangat terang) */
+tbody tr:nth-child(even) td {
+    background-color: #f4f6f9;
+}
+
+/* Penyesuaian agar 3 kolom pertama yang di-freeze juga mengikuti warna belang-belangnya */
+tbody tr:nth-child(odd) td:nth-child(1),
+tbody tr:nth-child(odd) td:nth-child(2),
+tbody tr:nth-child(odd) td:nth-child(3) {
+    background-color: #ffffff;
+}
+tbody tr:nth-child(even) td:nth-child(1),
+tbody tr:nth-child(even) td:nth-child(2),
+tbody tr:nth-child(even) td:nth-child(3) {
+    background-color: #f4f6f9;
+}
+
+/* === RESPONSIVE MOBILE UI (HP & Tablet) === */
+.hamburger-btn {
+    display: none; /* Sembunyikan di PC */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #444746;
+    margin-right: 10px;
+}
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+}
+
+/* === RESPONSIVE MOBILE UI (HP & Tablet) === */
+@media (max-width: 768px) {
+    /* Bebaskan scroll bodi di HP agar pagination di bawah tidak terpotong */
+    body { 
+        overflow: auto !important; 
+        height: auto !important; 
+    }
+    .main-container { 
+        height: auto !important; 
+        flex-direction: column; 
+    }
+    .content { 
+        overflow: visible !important; 
+        height: auto !important; 
+        padding: 10px; 
+    }
+
+    .hamburger-btn { display: block; z-index: 1002; }
+
+    /* 1. Rapikan Topbar & Tombol */
+    .topbar { padding: 10px; flex-wrap: wrap; gap: 10px; }
+    .logo h1 { font-size: 1.1rem; }
+    
+    .top-actions { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        gap: 5px; 
+        width: 100%; 
+    }
+    .top-actions button { 
+        font-size: 0.7rem; 
+        padding: 8px 4px; 
+        margin: 0; 
+    }
+
+    /* 2. Sidebar Off-Canvas */
+    .sidebar { position: fixed; left: -250px; top: 0; height: 100vh; width: 220px; z-index: 1001; transition: left 0.3s ease; box-shadow: 2px 0 5px rgba(0,0,0,0.2); background: #fff; }
+    .sidebar.open { left: 0; }
+    .sidebar-overlay.show { display: block; z-index: 1000; }
+
+    /* 3. Filter Grid 2 kolom */
+    .filter-container { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 8px; 
+        padding: 10px; 
+        margin-bottom: 10px;
+    }
+    .filter-box { width: 100%; }
+    .filter-box:nth-child(5) { grid-column: span 2; }
+    
+    .dashboard-header h2 { font-size: 1.1rem; margin-bottom: 10px; }
+
+    /* 4. Pengaturan Tabel & Batasi Tinggi Scroll Tabel */
+    .table-wrapper { 
+        height: auto !important; 
+    }
+    .table-responsive { 
+        max-height: 55vh; /* Batasi tinggi tabel agar tombol pagination selalu terlihat di bawahnya */
+        overflow-y: auto;
+    }
+
+    th, td { padding: 10px 6px; font-size: 0.75rem; } 
+    
+    /* Lebar Kolom Freeze & Logika Text Wrap Nama Mahasiswa */
+    th:nth-child(1), td:nth-child(1) { min-width: 35px; max-width: 35px; left: 0; text-align: center; }
+    th:nth-child(2), td:nth-child(2) { min-width: 105px; max-width: 105px; left: 35px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    
+    /* Kolom Nama Mahasiswa: Di-wrap ke bawah (tanpa ...), lebar pas */
+    th:nth-child(3), td:nth-child(3) { 
+        min-width: 140px; 
+        max-width: 140px; 
+        left: 140px; /* 35px + 105px */
+        white-space: normal !important; /* Agar teks turun ke bawah (wrap) */
+        word-break: break-word; /* Memecah kata panjang agar rapi */
+        box-shadow: 2px 0 3px rgba(0,0,0,0.1); 
+    }
+
+    /* PAKSA BACKGROUND & Z-INDEX AGAR TIDAK TEMBUS PANDANG */
+    th:nth-child(1), td:nth-child(1),
+    th:nth-child(2), td:nth-child(2),
+    th:nth-child(3), td:nth-child(3) {
+        background-color: #fff !important; 
+        z-index: 12 !important;
+    }
+    
+    /* Warna Belang-belang untuk kolom yang di-freeze */
+    tbody tr:nth-child(even) td:nth-child(1),
+    tbody tr:nth-child(even) td:nth-child(2),
+    tbody tr:nth-child(even) td:nth-child(3) {
+        background-color: #f4f6f9 !important;
+    }
+    
+    th:nth-child(1), th:nth-child(2), th:nth-child(3) {
+        z-index: 20 !important;
+        background-color: #f8f9fa !important;
+    }
+
+    /* Posisi Pagination di Mobile */
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px;
+    }
+    .page-btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+}
+/* === STYLING UNTUK DASHBOARD GRAFIK === */
+.chart-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.chart-card h3 {
+    margin-bottom: 15px;
+    color: #1f1f1f;
+    border-bottom: 2px solid #e4e6eb;
+    padding-bottom: 10px;
+}
+.chart-wrapper {
+    position: relative;
+    height: 350px; /* Tinggi standar agar proporsional */
+    width: 100%;
+}
+/* === STATUS SUMBER DATA === */
+.status-data { margin: -8px 0 12px; font-size: 0.8rem; color: #5f6368; }
+.status-data.error { color: #b3261e; font-weight: 500; }
+
+@media (max-width: 768px) {
+    /* 4 tombol aksi: susun 2 x 2 */
+    .top-actions { grid-template-columns: 1fr 1fr; }
+}
